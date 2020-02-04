@@ -35,6 +35,7 @@ setup(
     install_requires=[
         'nmrglue==0.7',
         'json2html==1.3.0',
+        'Jinja2==2.11.1',
         ],
     zip_safe=False,
     include_package_data=True,

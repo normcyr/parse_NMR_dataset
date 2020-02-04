@@ -99,7 +99,6 @@ def create_json_format(dataset_info):
     sorted_experiments_list = sorted(dataset_info['experiments'], key=itemgetter('experiment number'), reverse=False)
     dataset_experiments_sorted = {'dataset name': dataset_info['dataset name'], 'experiments': sorted_experiments_list}
     dataset_info_json = json.dumps(dataset_experiments_sorted, indent=4)
-    print(dataset_info_json)
 
     return dataset_info_json
 
@@ -118,13 +117,6 @@ def save_json_file(dataset_info_json, dataset_path):
     filename = dataset_path.parts[-1] + '.json'
     with open(filename, 'w') as output_file:
         output_file.write(dataset_info_json)
-
-
-def save_html_file(html_page, dataset_path):
-
-    filename = dataset_path.parts[-1] + '.html'
-    with open(filename, 'w') as output_file:
-        output_file.write(html_page)
 
 
 def main():
@@ -150,11 +142,10 @@ def main():
             dataset_info = build_experiment_information(dataset_info, experiment_number)
 
     dataset_info_json = create_json_format(dataset_info)
-    html_table = build_html_table(dataset_info_json)
-    html_page = make_dataset_html.make_html_page(html_table, dataset_path)
-
     save_json_file(dataset_info_json, dataset_path)
-    save_html_file(html_page, dataset_path)
+
+    html_table = build_html_table(dataset_info_json)
+    make_dataset_html.build_html(dataset_path, html_table)
 
 
 if __name__ == '__main__':

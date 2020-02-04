@@ -1,2 +1,3 @@
 nmrglue==0.7
 json2html==1.3.0
+Jinja2==2.11.1
