@@ -21,3 +21,7 @@ __pycache__
 # outputs
 /*.html
 /*.json
+
+# MacOS crap
+.DS_Store
+._.DS_Store
