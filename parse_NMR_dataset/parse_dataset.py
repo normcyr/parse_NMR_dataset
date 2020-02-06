@@ -81,9 +81,11 @@ def build_experiment_information(dataset_info, experiment_number):
 
     for dimension in acqu_list:
         all_dimension_parameters = dic[dimension]
+
         if dimension == 'acqus':
             acquision_parameters['general parameters'] = parse_general_acquision_parameters(all_dimension_parameters, nb_dimensions)
             acquision_parameters['direct dimension parameters'] = parse_dimension_parameters(all_dimension_parameters)
+
         else:
             acquision_parameters['indirect dimension parameters'] = parse_dimension_parameters(all_dimension_parameters)
 
