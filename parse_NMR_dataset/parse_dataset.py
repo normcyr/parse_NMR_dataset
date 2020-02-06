@@ -81,17 +81,15 @@ def build_experiment_information(dataset_info, experiment_number):
 
     for dimension in acqu_list:
         all_dimension_parameters = dic[dimension]
-
         if dimension == 'acqus':
             acquision_parameters['general parameters'] = parse_general_acquision_parameters(all_dimension_parameters, nb_dimensions)
             acquision_parameters['direct dimension parameters'] = parse_dimension_parameters(all_dimension_parameters)
-
         else:
             acquision_parameters['indirect dimension parameters'] = parse_dimension_parameters(all_dimension_parameters)
 
-    dataset_info['experiments'].append({'experiment number': int(experiment_number.parts[-1]), 'acquision parameters': acquision_parameters})
+        dataset_info['experiments'].append({'experiment number': int(experiment_number.parts[-1]), 'acquision parameters': acquision_parameters})
 
-    return dataset_info
+        return dataset_info
 
 
 def create_json_format(dataset_info):
@@ -125,8 +123,6 @@ def main():
     parser.add_argument('dataset_path',
                         help='indicate the path to dataset you want to be parsed',
                         type=Path,
-                        #default=Path(__file__).absolute().panamerent / "data",
-                        #nargs='?',
                         )
     parser.add_argument('-v', '--version',
                         action='version',
@@ -139,6 +135,7 @@ def main():
 
     for experiment_number in dataset_path.iterdir():
         if experiment_number.is_dir():
+            print('Extracting datat for experiment {}'.format(str(experiment_number)[-1]))
             dataset_info = build_experiment_information(dataset_info, experiment_number)
 
     dataset_info_json = create_json_format(dataset_info)
